@@ -59,6 +59,12 @@ public class frmSuministroView extends BaseMover {
         SuministroTableModel modelo = new SuministroTableModel(sum);
         this.tablaSuministros.setModel(modelo);
     }
+    
+     private void ordenarTabla() {
+        List<Suministro> sum = controlador.obtenerTodosSuministrosOrdenados();
+        SuministroTableModel modelo = new SuministroTableModel(sum);
+        this.tablaSuministros.setModel(modelo);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,10 +84,10 @@ public class frmSuministroView extends BaseMover {
         txtID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
+        btnOrdenar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 224, 246), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,14 +111,14 @@ public class frmSuministroView extends BaseMover {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 860, 300));
 
-        btnAgregar.setBackground(new java.awt.Color(51, 255, 51));
+        btnAgregar.setBackground(new java.awt.Color(51, 255, 0));
         btnAgregar.setText("AGREGAR SUMINISTRO");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 180, 30));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 190, 30));
 
         btnEliminar.setBackground(new java.awt.Color(255, 51, 0));
         btnEliminar.setText("ELIMINAR SUMINISTRO");
@@ -135,6 +141,15 @@ public class frmSuministroView extends BaseMover {
             }
         });
         jPanel1.add(lblClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 15, 20, 20));
+
+        btnOrdenar.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
+        btnOrdenar.setText("ORDENAR");
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, 30));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bgadmin.png"))); // NOI18N
         lblBackground.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -167,6 +182,11 @@ public class frmSuministroView extends BaseMover {
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        // TODO add your handling code here:
+        ordenarTabla();
+    }//GEN-LAST:event_btnOrdenarActionPerformed
+
     public static frmSuministroView getInstancia() {
         if (instancia == null) {
             instancia = new frmSuministroView();
@@ -183,6 +203,7 @@ public class frmSuministroView extends BaseMover {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnOrdenar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

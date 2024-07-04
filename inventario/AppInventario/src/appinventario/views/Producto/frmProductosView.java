@@ -67,6 +67,12 @@ public class frmProductosView extends BaseMover {
         ProductoTableModel modelo = new ProductoTableModel(productos);
         this.tablaProductos.setModel(modelo);
     }
+    
+    private void ordenarTabla() {
+        List<Producto> pro = controlador.obtenerTodosProductosOrdenados();
+        ProductoTableModel modelo = new ProductoTableModel(pro);
+        this.tablaProductos.setModel(modelo);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,11 +93,10 @@ public class frmProductosView extends BaseMover {
         txtID = new javax.swing.JTextField();
         btnEliminar1 = new javax.swing.JButton();
         lblClose = new javax.swing.JLabel();
+        btnOrdenar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 224, 252), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -160,6 +165,15 @@ public class frmProductosView extends BaseMover {
         });
         jPanel1.add(lblClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 20, 20));
 
+        btnOrdenar.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
+        btnOrdenar.setText("ORDENAR POR PRECIO");
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 140, 30));
+
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bgadmin.png"))); // NOI18N
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 820, 443));
 
@@ -215,6 +229,11 @@ public class frmProductosView extends BaseMover {
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        // TODO add your handling code here:
+        ordenarTabla();
+    }//GEN-LAST:event_btnOrdenarActionPerformed
+
     public static frmProductosView getInstancia() {
         if (instancia == null) {
             instancia = new frmProductosView();
@@ -231,6 +250,7 @@ public class frmProductosView extends BaseMover {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

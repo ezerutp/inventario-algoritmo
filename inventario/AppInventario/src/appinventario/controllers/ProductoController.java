@@ -85,6 +85,30 @@ public class ProductoController {
         return this.db.allRecords();
     }
     
+       /**
+     * Obtiene todos los Productos almacenados pero ordenados por su precio de menor a mayor
+     * @return Lista de Productos
+     */
+    public List<Producto> obtenerTodosProductosOrdenados(){
+        List<Producto> lista = obtenerTodosProductos();
+        int tamaño = lista.size();
+        
+        //Algoritmo de ordenamiento
+        for(int i = 0; i < tamaño - 1; i++){
+            for(int j = 0; j < tamaño - i - 1; j++){
+                if(lista.get(j).getPrecio()> lista.get(j+1).getPrecio()){
+                    //Si es verdadero intercambiamos
+                    Producto tmp = lista.get(j);
+                    lista.set(j, lista.get(j + 1));
+                    lista.set(j + 1, tmp);
+                }
+            }
+        }
+        
+        return lista;
+    }
+
+    
     /**
      * Elimina un producto por su ID.
      * <p>
