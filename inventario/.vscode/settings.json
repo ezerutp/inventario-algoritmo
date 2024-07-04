@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\mssql-jdbc-12.6.0.jre11.jar",
+        "/home/ezer/ALGORITMOS/AbsoluteLayout.jar",
+        "/home/ezer/ALGORITMOS/mssql-jdbc-12.6.0.jre11.jar"
+    ]
+}
