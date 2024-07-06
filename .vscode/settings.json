@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "AbsoluteLayout.jar",
+        "mssql-jdbc-12.6.0.jre11.jar"
+    ]
+}

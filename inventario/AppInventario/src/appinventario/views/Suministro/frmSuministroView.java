@@ -143,13 +143,13 @@ public class frmSuministroView extends BaseMover {
         jPanel1.add(lblClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 15, 20, 20));
 
         btnOrdenar.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
-        btnOrdenar.setText("ORDENAR");
+        btnOrdenar.setText("ORDENAR POR CANTIDAD");
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, 30));
+        jPanel1.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 170, 30));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bgadmin.png"))); // NOI18N
         lblBackground.setVerticalAlignment(javax.swing.SwingConstants.TOP);

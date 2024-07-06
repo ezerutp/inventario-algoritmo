@@ -84,6 +84,8 @@ public class frmProductosView extends BaseMover {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
@@ -100,12 +102,24 @@ public class frmProductosView extends BaseMover {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 224, 252), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 70, 130, 30));
+
+        btnBuscar.setBackground(new java.awt.Color(51, 51, 255));
+        btnBuscar.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 130, 30));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("PRODUCTOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 70));
 
         btnModificar.setBackground(new java.awt.Color(0, 153, 153));
         btnModificar.setText("MODIFICAR");
@@ -234,6 +248,14 @@ public class frmProductosView extends BaseMover {
         ordenarTabla();
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        List<Producto> productos = this.controlador.buscarProductosPorNombre(txtBuscar.getText());
+        ProductoTableModel modelo = new ProductoTableModel(productos);
+        this.tablaProductos.setModel(modelo);
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     public static frmProductosView getInstancia() {
         if (instancia == null) {
             instancia = new frmProductosView();
@@ -248,6 +270,7 @@ public class frmProductosView extends BaseMover {
         instancia.setVisible(visible);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnOrdenar;
@@ -259,6 +282,7 @@ public class frmProductosView extends BaseMover {
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblClose;
     private javax.swing.JTable tablaProductos;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

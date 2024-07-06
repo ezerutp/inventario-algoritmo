@@ -2,6 +2,7 @@ package appinventario.controllers;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Producto;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoController {
@@ -85,7 +86,7 @@ public class ProductoController {
         return this.db.allRecords();
     }
     
-       /**
+    /**
      * Obtiene todos los Productos almacenados pero ordenados por su precio de menor a mayor
      * @return Lista de Productos
      */
@@ -93,7 +94,7 @@ public class ProductoController {
         List<Producto> lista = obtenerTodosProductos();
         int tamaño = lista.size();
         
-        //Algoritmo de ordenamiento
+        //Algoritmo de ordenamiento burbuja
         for(int i = 0; i < tamaño - 1; i++){
             for(int j = 0; j < tamaño - i - 1; j++){
                 if(lista.get(j).getPrecio()> lista.get(j+1).getPrecio()){
@@ -106,6 +107,26 @@ public class ProductoController {
         }
         
         return lista;
+    }
+    
+    /**
+     * Busca productos por su atributo nombre
+     * @param nombre
+     * @return Nos devuelve una lista de productos
+     */
+    public List<Producto> buscarProductosPorNombre(String nombre) {
+        List<Producto> lista = obtenerTodosProductos();
+        List<Producto> listaretorno = new ArrayList<>();
+        
+        //Algoritmo de busqueda secuencial --- aplicado en la interfaz gráfica
+        for (Producto p : lista) {
+            String nombrep = p.getNombre();
+            if (nombrep.toUpperCase().contains(nombre.toUpperCase())){
+                listaretorno.add(p);
+            }
+        }
+        
+        return listaretorno;
     }
 
     
