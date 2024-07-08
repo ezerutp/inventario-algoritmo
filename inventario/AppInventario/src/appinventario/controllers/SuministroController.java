@@ -3,6 +3,8 @@ package appinventario.controllers;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Suministro;
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class SuministroController {
 
@@ -67,16 +69,17 @@ public class SuministroController {
     
     /**
      * Obtiene todos los suministros almacenados pero ordenados de menor a mayor
+     * @param predicado criterio de evaluacion
      * @return Lista de suministros
      */
-    public List<Suministro> obtenerTodosSuministrosOrdenados(){
+    public List<Suministro> obtenerTodosSuministrosOrdenados(BiPredicate<Suministro, Suministro> predicado){
         List<Suministro> lista = obtenerTodosSuministros();
         int tamaño = lista.size();
         
         //Algoritmo de ordenamiento
         for(int i = 0; i < tamaño - 1; i++){
             for(int j = 0; j < tamaño - i - 1; j++){
-                if(lista.get(j).getCantidad() > lista.get(j+1).getCantidad()){
+                if(predicado.test(lista.get(j), lista.get(j+1))){
                     //Si es verdadero intercambiamos
                     Suministro tmp = lista.get(j);
                     lista.set(j, lista.get(j + 1));
@@ -87,26 +90,6 @@ public class SuministroController {
         
         return lista;
     }
-    
-    public List<Suministro> obtenerTodosSuministrosOrdenadosDES(){
-        List<Suministro> lista = obtenerTodosSuministros();
-        int tamaño = lista.size();
-        
-        //Algoritmo de ordenamiento
-        for(int i = 0; i < tamaño - 1; i++){
-            for(int j = 0; j < tamaño - i - 1; j++){
-                if(lista.get(j).getId() < lista.get(j+1).getId()){
-                    //Si es verdadero intercambiamos
-                    Suministro tmp = lista.get(j);
-                    lista.set(j, lista.get(j + 1));
-                    lista.set(j + 1, tmp);
-                }
-            }
-        }
-        
-        return lista;
-    }
-
 
     /**
      * Elimina un suministro de la base de datos por su identificador.

@@ -5,6 +5,7 @@ import appinventario.models.Suministro;
 import appinventario.tablas.SuministroTableModel;
 import appinventario.views.BaseMover;
 import java.util.List;
+import java.util.function.BiPredicate;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -61,7 +62,8 @@ public class frmSuministroView extends BaseMover {
     }
     
      private void ordenarTabla() {
-        List<Suministro> sum = controlador.obtenerTodosSuministrosOrdenados();
+        BiPredicate<Suministro, Suministro> predicado = (s1, s2) -> s1.getCantidad() > s2.getCantidad();
+        List<Suministro> sum = controlador.obtenerTodosSuministrosOrdenados(predicado);
         SuministroTableModel modelo = new SuministroTableModel(sum);
         this.tablaSuministros.setModel(modelo);
     }

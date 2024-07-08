@@ -1,1 +1,58 @@
 /inventario/AppInventario/dist/
+# Directorio de compilación
+/inventario/AppInventario/build/
+
+# Directorios de configuración
+/inventario/AppInventario/nbproject/private/
+out/
+gen/
+
+# Archivos generados por el sistema
+*.class
+*.log
+
+# Directorio de bibliotecas
+lib/
+
+# Archivos generados por el entorno de desarrollo
+.DS_Store
+*.swp
+*~
+*.idea/
+*.iml
+*.ipr
+
+# Archivos de respaldo
+*.bak
+*.backup
+*.old
+*.orig
+
+# Archivos de configuración de la depuración
+*.launch
+
+# Directorios de Eclipse
+.project
+.classpath
+.settings/
+
+# Archivos de Maven (si el proyecto utiliza también Maven)
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# Archivos de gradle (si el proyecto utiliza también Gradle)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Archivos de configuración de IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Archivos de NetBeans
+nb-configuration.xml

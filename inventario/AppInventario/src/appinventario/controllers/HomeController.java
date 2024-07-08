@@ -1,11 +1,14 @@
 package appinventario.controllers;
 
+import appinventario.models.Consumo;
+import appinventario.models.Suministro;
 import appinventario.tablas.ConsumoTableModel;
 import appinventario.tablas.ProductoTableModel;
 import appinventario.tablas.ProveedorTableModel;
 import appinventario.tablas.RConsumoTableModel;
 import appinventario.tablas.RSuministroTableModel;
 import appinventario.tablas.UsuarioTableModel;
+import java.util.function.BiPredicate;
 
 public class HomeController {
     
@@ -50,11 +53,14 @@ public class HomeController {
     }
     
     public RConsumoTableModel listaConsumos(){
-        return new RConsumoTableModel(conscontrol.obtenerTodosConsumos());
+        BiPredicate<Consumo, Consumo> predicado = (c1, c2) -> c1.getId() < c2.getId();
+        return new RConsumoTableModel(conscontrol.obtenerTodosConsumosOrdenados(predicado));
     }
 
     public RSuministroTableModel listaSuministros(){
-        return new RSuministroTableModel(sumicontrol.obtenerTodosSuministrosOrdenadosDES());
+        //criterio de ordenamiento (ordenar y mostrar los ultimos 5 ingresos)
+        BiPredicate<Suministro, Suministro> predicado = (s1, s2) -> s1.getId() < s2.getId();
+        return new RSuministroTableModel(sumicontrol.obtenerTodosSuministrosOrdenados(predicado));
     }
 
     public ProductoTableModel listaProductos(){
