@@ -7,14 +7,21 @@ import javax.swing.table.AbstractTableModel;
 public class RConsumoTableModel extends AbstractTableModel {
     private List<Consumo> consumos;
     private String[] columnNames = {"Producto", "Cantidad", "Unidad"};
-
+    private int filas;
+    
+    public RConsumoTableModel(List<Consumo> consumos, int filas) {
+        this.consumos = consumos;
+        this.filas = filas;
+    }
+    
     public RConsumoTableModel(List<Consumo> consumos) {
         this.consumos = consumos;
+        this.filas = 5;
     }
 
     @Override
     public int getRowCount() {
-        return Math.min(5, consumos.size());
+        return Math.min(filas, consumos.size());
     }
 
     @Override

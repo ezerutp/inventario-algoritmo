@@ -2,12 +2,7 @@ package appinventario.controllers;
 
 import appinventario.models.Consumo;
 import appinventario.models.Suministro;
-import appinventario.tablas.ConsumoTableModel;
-import appinventario.tablas.ProductoTableModel;
-import appinventario.tablas.ProveedorTableModel;
-import appinventario.tablas.RConsumoTableModel;
-import appinventario.tablas.RSuministroTableModel;
-import appinventario.tablas.UsuarioTableModel;
+import appinventario.tablas.*;
 import java.util.function.BiPredicate;
 
 public class HomeController {
