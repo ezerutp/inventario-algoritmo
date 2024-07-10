@@ -71,7 +71,7 @@ public class frmProductosView extends BaseMover {
     }
     
     private void ordenarTabla() {
-        BiPredicate<Producto, Producto> predicado = (p1, p2) -> p1.getId() > p2.getId();
+        BiPredicate<Producto, Producto> predicado = (p1, p2) -> p1.getPrecio() <= p2.getPrecio();
         List<Producto> pro = controlador.obtenerTodosProductosOrdenados(predicado);
         ProductoTableModel modelo = new ProductoTableModel(pro);
         this.tablaProductos.setModel(modelo);

@@ -39,9 +39,9 @@ public class Ordenamiento {
         List<T> mayores = new ArrayList<>();
         
         for (T elemento : lista) {
-            if (!predicado.test(elemento, pivot)) {
+            if (predicado.test(elemento, pivot)) {
                 menores.add(elemento);
-            } else if (!predicado.test(pivot, elemento)) {
+            } else if (predicado.test(pivot, elemento)) {
                 mayores.add(elemento);
             } else {
                 iguales.add(elemento);

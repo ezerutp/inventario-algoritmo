@@ -1,10 +1,10 @@
-
-/inventario/AppInventario/dist/
 # Directorio de compilación
-/inventario/AppInventario/build/
+/inventario/InventarioAlgoritmo/dist/
+/inventario/InventarioAlgoritmo/build/
 
 # Directorios de configuración
-/inventario/AppInventario/nbproject/private/
+/inventario/InventarioAlgoritmo/nbproject/private/
+/inventario/InventarioAlgoritmo/nbproject/
 out/
 gen/
 
@@ -57,5 +57,5 @@ build/
 
 # Archivos de NetBeans
 nb-configuration.xml
-/inventario/NewAppInventario/nbproject/private/
+/inventario/NewInventarioAlgoritmo/nbproject/private/
 /inventario/InventarioAlgoritmo/nbproject/private/
