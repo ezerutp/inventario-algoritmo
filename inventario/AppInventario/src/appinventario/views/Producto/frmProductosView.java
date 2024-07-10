@@ -5,6 +5,8 @@ import appinventario.controllers.ProductoController;
 import appinventario.models.Producto;
 import appinventario.views.BaseMover;
 import java.util.List;
+import java.util.function.BiPredicate;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -69,7 +71,8 @@ public class frmProductosView extends BaseMover {
     }
     
     private void ordenarTabla() {
-        List<Producto> pro = controlador.obtenerTodosProductosOrdenados();
+        BiPredicate<Producto, Producto> predicado = (p1, p2) -> p1.getId() > p2.getId();
+        List<Producto> pro = controlador.obtenerTodosProductosOrdenados(predicado);
         ProductoTableModel modelo = new ProductoTableModel(pro);
         this.tablaProductos.setModel(modelo);
     }

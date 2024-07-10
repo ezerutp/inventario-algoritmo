@@ -3,6 +3,8 @@ package appinventario.controllers;
 import java.util.List;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Consumo;
+import appinventario.utils.Ordenamiento;
+
 import java.util.function.BiPredicate;
 
 public class ConsumoController {
@@ -72,21 +74,7 @@ public class ConsumoController {
      */
     public List<Consumo> obtenerTodosConsumosOrdenados(BiPredicate<Consumo, Consumo> predicado){
         List<Consumo> lista = obtenerTodosConsumos();
-        int tamaño = lista.size();
-        
-        //Algoritmo de ordenamiento
-        for(int i = 0; i < tamaño - 1; i++){
-            for(int j = 0; j < tamaño - i - 1; j++){
-                if(predicado.test(lista.get(j), lista.get(j+1))){
-                    //Si es verdadero intercambiamos
-                    Consumo tmp = lista.get(j);
-                    lista.set(j, lista.get(j + 1));
-                    lista.set(j + 1, tmp);
-                }
-            }
-        }
-        
-        return lista;
+        return Ordenamiento.burbuja(lista, predicado);
     }
 
     /**

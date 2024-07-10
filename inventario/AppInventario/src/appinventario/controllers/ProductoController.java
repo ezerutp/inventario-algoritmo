@@ -2,8 +2,11 @@ package appinventario.controllers;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Producto;
+import appinventario.utils.Ordenamiento;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiPredicate;
 
 public class ProductoController {
 
@@ -88,27 +91,15 @@ public class ProductoController {
     
     /**
      * Obtiene todos los Productos almacenados pero ordenados por su precio de menor a mayor
+     * @param predicado criterio de ordenamiento
      * @return Lista de Productos
      */
-    public List<Producto> obtenerTodosProductosOrdenados(){
+    public List<Producto> obtenerTodosProductosOrdenados(BiPredicate<Producto, Producto> predicado){
+        
         List<Producto> lista = obtenerTodosProductos();
-        int tamaño = lista.size();
-        
-        //Algoritmo de ordenamiento burbuja
-        for(int i = 0; i < tamaño - 1; i++){
-            for(int j = 0; j < tamaño - i - 1; j++){
-                if(lista.get(j).getPrecio()> lista.get(j+1).getPrecio()){
-                    //Si es verdadero intercambiamos
-                    Producto tmp = lista.get(j);
-                    lista.set(j, lista.get(j + 1));
-                    lista.set(j + 1, tmp);
-                }
-            }
-        }
-        
-        return lista;
+        return Ordenamiento.quicksort(lista, predicado);
     }
-    
+
     /**
      * Busca productos por su atributo nombre
      * @param nombre

@@ -1,7 +1,10 @@
 package appinventario.controllers;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Proveedor;
+import appinventario.utils.Ordenamiento;
+
 import java.util.List;
+import java.util.function.BiPredicate;
 
 public class ProveedorController {
 
@@ -82,6 +85,22 @@ public class ProveedorController {
      */
     public List<Proveedor> obtenerTodosProveedores(){
         return this.db.allRecords();
+    }
+
+    /**
+     * Obtiene todos los proveedores almacenados pero ordenados por un criterio definido.
+     * <p>
+     * Este método lee todos los proveedores registrados en el sistema
+     * y los ordena de acuerdo al criterio proporcionado.
+     * </p>
+     * 
+     * @param predicado El criterio de ordenamiento.
+     * @return La lista de proveedores ordenados.
+     */
+    public List<Proveedor> obtenerTodosProveedoresOrdenados(BiPredicate<Proveedor, Proveedor> predicado){
+
+        List<Proveedor> lista = obtenerTodosProveedores();
+        return Ordenamiento.burbuja(lista, predicado);
     }
 
     /**
