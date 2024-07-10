@@ -57,3 +57,5 @@ build/
 
 # Archivos de NetBeans
 nb-configuration.xml
+/inventario/NewAppInventario/nbproject/private/
+/inventario/InventarioAlgoritmo/nbproject/private/
