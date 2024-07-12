@@ -7,16 +7,15 @@ public class Inventario implements DBEntity{
     private int id;
     private Producto producto;
     private int cantidad;
-    private String tabla = "consumo";
+    private String tabla = "inventario";
 
     public Inventario() {
     }
 
-    public Inventario(int id, Producto producto, int cantidad, String tabla) {
+    public Inventario(int id, Producto producto, int cantidad) {
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;
-        this.tabla = tabla;
     }
 
     public int getId() {

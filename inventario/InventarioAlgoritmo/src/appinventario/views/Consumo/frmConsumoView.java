@@ -50,7 +50,7 @@ public class frmConsumoView extends BaseMover {
     // Funcion para la vista nuevo
     private void frmNewView() {
         InventarioController inv = new InventarioController();
-        List<ProductoStock> productos = inv.listaProductosConStock();
+        List<ProductoStock> productos = inv.pStock();
         if (productos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "NO EXISTE PRODUCTOS CON STOCK EN EL INVENTARIO", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

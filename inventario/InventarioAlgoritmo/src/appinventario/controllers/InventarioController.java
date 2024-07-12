@@ -1,28 +1,22 @@
 package appinventario.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Inventario;
-import appinventario.models.Suministro;
+import appinventario.models.Producto;
 import appinventario.utils.ProductoStock;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class InventarioController {
     
     private DBSqlManager<Inventario> db;
-    private SuministroController sucontrol;
-    private ConsumoController cocontrol;
 
     /**
      * Constructor de la clase InventarioController. Inicializa la base de datos para la clase Inventario.
      */
     public InventarioController() {
         this.db = new DBSqlManager<>(Inventario.class);
-        this.sucontrol = new SuministroController();
-        this.cocontrol = new ConsumoController();
     }
 
     /**
@@ -32,7 +26,23 @@ public class InventarioController {
      * @return true si el inventario se registró correctamente, false en caso contrario.
      */
     public boolean registrarInventario(Inventario inv) {
-        return this.db.registrar(inv);
+        Inventario p = obtenerInventario(inv.getProducto());
+        if (p == null) {
+            this.db.registrar(inv);
+            return true;
+        } else {
+            int cantidadOld = p.getCantidad();
+            int cantidadNew = cantidadOld + inv.getCantidad();
+            System.out.println(cantidadNew);
+            if (cantidadNew > 0) {
+                p.setCantidad(cantidadOld + inv.getCantidad());
+                actualizarInventario(p.getId(), p);
+                return true;
+            } else {
+                eliminarInventario(p.getId());
+                return true;
+            }
+        }
     }
 
     /**
@@ -48,6 +58,25 @@ public class InventarioController {
         //algoritmo de busqueda secuencial
         for(Inventario i : listaInventario){
             if(i.getId() == id){
+                return i;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Obtiene un inventario de la base de datos por su identificador.
+     *
+     * @param producto El producto dentro de inventario.
+     * @return El inventario correspondiente al identificador especificado, o null si no se encuentra.
+     */
+    public Inventario obtenerInventario(Producto producto) {
+
+        List<Inventario> listaInventario = obtenerTodosInventarios();
+
+        //algoritmo de busqueda secuencial
+        for(Inventario i : listaInventario){
+            if(i.getProducto().getId() == producto.getId()){
                 return i;
             }
         }
@@ -80,47 +109,21 @@ public class InventarioController {
      * @param inv El nuevo inventario con los datos actualizados.
      * @return true si el inventario se actualizó correctamente, false en caso contrario.
      */
-    public boolean actualizarInventario(int id, Inventario inv) {
+    private boolean actualizarInventario(int id, Inventario inv) {
         return this.db.actualizarPorId(id, inv);
     }
 
     /**
-     * Calcula el total de un producto en inventario restando la cantidad de suministros y consumos.
+     * Obtiene una lista de productos con su respectivo stock.
      *
-     * @param producto El nombre del producto a buscar en inventario.
-     * @return La cantidad total del producto en inventario.
+     * @return Una lista de objetos ProductoStock que contiene el nombre del producto y la cantidad en inventario.
      */
-    public int totalProductoInventario(String producto) {
-        int suministro= sucontrol.obtenerTotalProductoPorNombre(producto);
-        int consumo = cocontrol.obtenerTotalProductoPorNombre(producto);
-        int total = suministro - consumo;
-        return total;
-    }
-    
-    /**
-     * lista de productos con stock en inventario.
-     *
-     * @return Una lista de productos con stock en inventario.
-     */
-    public List<ProductoStock> listaProductosConStock() {
-        
+    public List<ProductoStock> pStock(){
+        List<Inventario> inventarios = obtenerTodosInventarios();
         List<ProductoStock> lista = new ArrayList<>();
-        //Uso de HashSet para evitar que se repitan los items de la lista productos ingresados
-        Set<String> nombresProductos = new HashSet<>();
-        List<Suministro> sum = sucontrol.obtenerTodosSuministros();
-
-        //Algoritmo de busqueda secuencial
-        for (Suministro s : sum) {
-            if (totalProductoInventario(s.getProducto().getNombre()) > 0) {
-                nombresProductos.add(s.getProducto().getNombre());
-            }
-        }
-
-        //segundo algoritmo de busqueda
-        for (String s : nombresProductos) {
-            int cantidad = totalProductoInventario(s);
-            ProductoStock pstock = new ProductoStock(s, cantidad);
-            lista.add(pstock);
+        for (Inventario inv : inventarios) {
+            ProductoStock p = new ProductoStock(inv.getProducto().getNombre(), inv.getCantidad());
+            lista.add(p);
         }
         return lista;
     }

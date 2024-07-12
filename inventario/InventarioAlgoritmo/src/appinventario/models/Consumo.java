@@ -25,7 +25,7 @@ public class Consumo implements DBEntity {
         this.id = id;
         this.producto = producto;
         this.usuario = usuario;
-        this.cantidad = cantidad;
+        this.cantidad = 0 - cantidad;
         this.fechaSalida = fechaSalida;
         this.tabla = tabla;
     }
@@ -59,7 +59,7 @@ public class Consumo implements DBEntity {
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        this.cantidad = 0 - cantidad;
     }
 
     public Date getFechaSalida() {

@@ -1,9 +1,9 @@
 IF OBJECT_ID('suministro', 'U') IS NOT NULL
     DROP TABLE suministro;
-IF OBJECT_ID('inventario', 'U') IS NOT NULL
-    DROP TABLE inventario;
 IF OBJECT_ID('consumo', 'U') IS NOT NULL
     DROP TABLE consumo;
+IF OBJECT_ID('inventario', 'U') IS NOT NULL
+    DROP TABLE inventario;
 IF OBJECT_ID('producto', 'U') IS NOT NULL
     DROP TABLE producto;
 IF OBJECT_ID('proveedor', 'U') IS NOT NULL
@@ -62,11 +62,19 @@ CREATE TABLE "consumo" (
 )
 ;
 
+CREATE TABLE "inventario" (
+	"id" INT IDENTITY(1,1) PRIMARY KEY,
+	"producto_id" INT NOT NULL,
+	"cantidad" INT NOT NULL
+)
+;
+
 ALTER TABLE "suministro" ADD CONSTRAINT fk_producto_id_suministro FOREIGN KEY ("producto_id") REFERENCES "producto"("id");
 ALTER TABLE "suministro" ADD CONSTRAINT fk_proveedor_id_suministro FOREIGN KEY ("proveedor_id") REFERENCES "proveedor"("id");
 ALTER TABLE "suministro" ADD CONSTRAINT fk_usuario_id_suministro FOREIGN KEY ("usuario_id") REFERENCES "usuario"("id");
 ALTER TABLE "consumo" ADD CONSTRAINT fk_producto_id_consumo FOREIGN KEY ("producto_id") REFERENCES "producto"("id");
 ALTER TABLE "consumo" ADD CONSTRAINT fk_usuario_id_consumo FOREIGN KEY ("usuario_id") REFERENCES "usuario"("id");
+ALTER TABLE "inventario" ADD CONSTRAINT fk_producto_id_inventario FOREIGN KEY ("producto_id") REFERENCES "producto"("id");
 
 -- Insertar registros en la tabla "usuario"
 INSERT INTO "usuario" ("admin", "nombre", "apellido", "telefono", "usuario", "password", "cargo", "forcePass") VALUES 

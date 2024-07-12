@@ -115,21 +115,4 @@ public class DBSqlManager <T extends DBEntity>{
         }
         return false;
     }
-
-    //Hay que elimionarlo!!!
-    public int obtenerTotalProductoPorNombre(String producto) {
-        try {
-            int total = 0;
-            String query = String.format("SELECT SUM(tabla.cantidad) AS total FROM %s tabla JOIN producto p ON tabla.producto_id = p.id WHERE p.nombre = '%s'", model.getTabla(), producto);
-            ResultSet rs = ejecutarConsulta(query);
-            if (rs == null) { return total; }
-            while (rs.next()) {
-                total = rs.getInt(1);
-            }
-            return total;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
 }

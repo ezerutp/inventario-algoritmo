@@ -3,6 +3,7 @@ package appinventario.controllers;
 import java.util.List;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Consumo;
+import appinventario.models.Inventario;
 import appinventario.utils.Ordenamiento;
 
 import java.util.function.BiPredicate;
@@ -10,12 +11,14 @@ import java.util.function.BiPredicate;
 public class ConsumoController {
     
     private DBSqlManager<Consumo> db;
+    private InventarioController inv;
 
     /**
      * Constructor de la clase ConsumoController. Inicializa la base de datos para la clase Consumo.
      */
     public ConsumoController() {
         this.db = new DBSqlManager<>(Consumo.class);
+        this.inv = new InventarioController();
     }
 
     /**
@@ -25,7 +28,12 @@ public class ConsumoController {
      * @return true si el consumo se registró correctamente, false en caso contrario.
      */
     public boolean registrarConsumo(Consumo con) {
-        return this.db.registrar(con);
+        boolean r = this.db.registrar(con);
+        if (r) {
+            Inventario inventario = new Inventario(0, con.getProducto(), con.getCantidad());
+            return inv.registrarInventario(inventario);
+        }
+        return false;
     }
 
     /**
@@ -46,16 +54,6 @@ public class ConsumoController {
         }
         //fin del algoritmo
         return null;
-    }
-
-    /**
-     * Obtiene el total de un producto por su nombre en base a los suministros almacenados en la base de datos.
-     *
-     * @param producto El nombre del producto a buscar.
-     * @return El total de unidades consumidas del producto especificado.
-     */
-    public int obtenerTotalProductoPorNombre(String producto) {
-        return this.db.obtenerTotalProductoPorNombre(producto);
     }
 
     /**
