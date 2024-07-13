@@ -3,12 +3,14 @@ package appinventario.controllers;
 import appinventario.models.Consumo;
 import appinventario.models.Suministro;
 import appinventario.tablas.*;
+
 import java.util.function.BiPredicate;
 
 public class HomeController {
     
     //Definimos los controladores a utilizar
     private AdminController admcontrol;
+    private InventarioController invcontrol;
     private ConsumoController conscontrol;
     private SuministroController sumicontrol;
     private ProductoController prodcontrol;
@@ -16,6 +18,7 @@ public class HomeController {
     
     public HomeController() {
         this.admcontrol = new AdminController();
+        this.invcontrol = new InventarioController();
         this.conscontrol = new ConsumoController();
         this.sumicontrol = new SuministroController();
         this.prodcontrol = new ProductoController();
@@ -24,6 +27,10 @@ public class HomeController {
 
     public int cantidadUsers() {
         return admcontrol.obtenerTodosUsuarios().size();
+    }
+
+    public int cantidadInventario() {
+        return invcontrol.obtenerTodosInventarios().size();
     }
 
     public int cantidadProductos() {

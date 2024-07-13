@@ -2,6 +2,8 @@ package appinventario.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+import java.util.function.Predicate;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Inventario;
@@ -126,5 +128,22 @@ public class InventarioController {
             lista.add(p);
         }
         return lista;
+    }
+
+    /**
+     * Obtiene una lista de productos críticos basada en un predicado de cantidad.
+     *
+     * @param predicado El predicado que determina si un producto es crítico basado en su cantidad.
+     * @return Una pila de productos críticos.
+     */
+    public Stack<Producto> productosCriticos(Predicate<Integer> predicado) {
+        List<Inventario> lista = obtenerTodosInventarios();
+        Stack<Producto> stack = new Stack<>();
+        for (Inventario i : lista) {
+            if (predicado.test(i.getCantidad())){
+                stack.push(i.getProducto());
+            }
+        }
+        return stack;
     }
 }
