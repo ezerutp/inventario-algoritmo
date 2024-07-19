@@ -9,12 +9,12 @@ import java.util.function.BiPredicate;
 public class HomeController {
     
     //Definimos los controladores a utilizar
-    private AdminController admcontrol;
-    private InventarioController invcontrol;
-    private ConsumoController conscontrol;
-    private SuministroController sumicontrol;
-    private ProductoController prodcontrol;
-    private ProveedorController provcontrol;
+    private final AdminController admcontrol;
+    private final InventarioController invcontrol;
+    private final ConsumoController conscontrol;
+    private final SuministroController sumicontrol;
+    private final ProductoController prodcontrol;
+    private final ProveedorController provcontrol;
     
     public HomeController() {
         this.admcontrol = new AdminController();
