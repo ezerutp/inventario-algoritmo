@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 public class SuministroTableModel extends AbstractTableModel {
     private List<Suministro> suministros;
     private static final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-    private String[] columnNames = {"ID", "Producto", "Proveedor", "Cantidad", "Unidad", "Usuario", "Fecha de ingreso"};
+    private String[] columnNames = {"Producto", "Proveedor", "Cantidad", "Unidad", "Usuario", "Fecha de ingreso"};
 
     public SuministroTableModel(List<Suministro> suministros) {
         this.suministros = suministros;
@@ -34,18 +34,16 @@ public class SuministroTableModel extends AbstractTableModel {
         Suministro suministro = suministros.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return suministro.getId();
-            case 1:
                 return suministro.getProducto().getNombre();
-            case 2:
+            case 1:
                 return suministro.getProveedor().getNombre();
-            case 3:
+            case 2:
                 return suministro.getCantidad();
-            case 4:
+            case 3:
                 return suministro.getProducto().getUnidad_medida();
-            case 5:
+            case 4:
                 return suministro.getUsuario().getUsuario();
-            case 6:
+            case 5:
                 return formatoFecha.format(suministro.getFechaIngreso());
             default:
                 return null;

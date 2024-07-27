@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 public class ConsumoTableModel extends AbstractTableModel {
     private List<Consumo> consumos;
     private static final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-    private String[] columnNames = {"ID", "Producto", "Cantidad", "Unidad", "Usuario", "Fecha de salida"};
+    private String[] columnNames = {"Producto", "Cantidad", "Unidad", "Usuario", "Fecha de salida"};
 
     public ConsumoTableModel(List<Consumo> consumos) {
         this.consumos = consumos;
@@ -34,16 +34,14 @@ public class ConsumoTableModel extends AbstractTableModel {
         Consumo consumo = consumos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return consumo.getId();
-            case 1:
                 return consumo.getProducto().getNombre();
-            case 2:
+            case 1:
                 return consumo.getCantidad();
-            case 3:
+            case 2:
                 return consumo.getProducto().getUnidad_medida();
-            case 4:
+            case 3:
                 return consumo.getUsuario().getUsuario();
-            case 5:
+            case 4:
                 return formatoFecha.format(consumo.getFechaSalida());
             default:
                 return null;

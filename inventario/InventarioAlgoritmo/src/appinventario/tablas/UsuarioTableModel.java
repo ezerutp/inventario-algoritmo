@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class UsuarioTableModel extends AbstractTableModel {
     private List<Usuario> usuarios;
-    private String[] columnNames = {"ID", "Admin", "Nombre", "Apellido", "Teléfono", "Usuario", "Cargo"};
+    private String[] columnNames = {"Admin", "Nombre", "Apellido", "Teléfono", "Usuario", "Cargo"};
 
     public UsuarioTableModel(List<Usuario> usuarios) {
         this.usuarios = usuarios;
@@ -32,18 +32,16 @@ public class UsuarioTableModel extends AbstractTableModel {
         Usuario usuario = usuarios.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return usuario.getId();
-            case 1:
                 return usuario.isAdmin();
-            case 2:
+            case 1:
                 return usuario.getNombre();
-            case 3:
+            case 2:
                 return usuario.getApellido();
-            case 4:
+            case 3:
                 return usuario.getTelefono();
-            case 5:
+            case 4:
                 return usuario.getUsuario();
-            case 6:
+            case 5:
                 return usuario.getCargo();
             default:
                 return null;

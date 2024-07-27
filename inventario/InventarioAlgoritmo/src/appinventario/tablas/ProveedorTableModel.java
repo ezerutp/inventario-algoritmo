@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class ProveedorTableModel extends AbstractTableModel {
     private List<Proveedor> proveedores;
-    private String[] columnNames = {"ID", "Nombre", "Teléfono", "Dirección", "Email"};
+    private String[] columnNames = {"Nombre", "Teléfono", "Dirección", "Email"};
 
     public ProveedorTableModel(List<Proveedor> proveedores) {
         this.proveedores = proveedores;
@@ -32,14 +32,12 @@ public class ProveedorTableModel extends AbstractTableModel {
         Proveedor proveedor = proveedores.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return proveedor.getId();
-            case 1:
                 return proveedor.getNombre();
-            case 2:
+            case 1:
                 return proveedor.getTelefono();
-            case 3:
+            case 2:
                 return proveedor.getDireccion();
-            case 4:
+            case 3:
                 return proveedor.getEmail();
             default:
                 return null;

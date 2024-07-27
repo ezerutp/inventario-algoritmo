@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class InventarioTableModel extends AbstractTableModel {
     private List<Inventario> inventarios;
-    private String[] columnNames = {"ID", "Producto", "Cantidad"};
+    private String[] columnNames = {"Producto", "Cantidad"};
 
     public InventarioTableModel(List<Inventario> inventarios) {
         this.inventarios = inventarios;
@@ -32,10 +32,8 @@ public class InventarioTableModel extends AbstractTableModel {
         Inventario inventario = inventarios.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return inventario.getId();
-            case 1:
                 return inventario.getProducto().getNombre();
-            case 2:
+            case 1:
                 return inventario.getCantidad();
             default:
                 return null;
