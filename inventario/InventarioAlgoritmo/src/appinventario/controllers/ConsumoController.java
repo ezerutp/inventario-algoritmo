@@ -4,6 +4,7 @@ import java.util.List;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Consumo;
 import appinventario.models.Inventario;
+import appinventario.tablemodels.ConsumoTableModel;
 import appinventario.utils.Ordenamiento;
 
 import java.util.function.BiPredicate;
@@ -94,5 +95,14 @@ public class ConsumoController {
      */
     public boolean actualizarConsumo(int id, Consumo con) {
         return this.db.actualizarPorId(id, con);
+    }
+
+    /**
+     * Retorna un modelo de tabla para los consumos.
+     * 
+     * @return Un objeto ConsumoTableModel que contiene la lista de todos los consumos.
+     */
+    public ConsumoTableModel modeloConsumo(){
+        return new ConsumoTableModel(obtenerTodosConsumos());
     }
 }

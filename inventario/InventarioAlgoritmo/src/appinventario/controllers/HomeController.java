@@ -2,7 +2,7 @@ package appinventario.controllers;
 
 import appinventario.models.Consumo;
 import appinventario.models.Suministro;
-import appinventario.tablas.*;
+import appinventario.tablemodels.*;
 
 import java.util.function.BiPredicate;
 

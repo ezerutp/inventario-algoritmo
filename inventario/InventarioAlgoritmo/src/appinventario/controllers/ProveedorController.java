@@ -1,6 +1,7 @@
 package appinventario.controllers;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Proveedor;
+import appinventario.tablemodels.ProveedorTableModel;
 import appinventario.utils.Ordenamiento;
 
 import java.util.List;
@@ -130,5 +131,14 @@ public class ProveedorController {
      */
     public boolean actualizarProveedor(int id, Proveedor provedor){
         return this.db.actualizarPorId(id, provedor);
+    }
+
+    /**
+     * Retorna un modelo de tabla para los proveedores.
+     * 
+     * @return Un objeto ProveedorTableModel que contiene la lista de todos los proveedores.
+     */
+    public ProveedorTableModel modeloProveedor(){
+        return new ProveedorTableModel(obtenerTodosProveedores());
     }
 }

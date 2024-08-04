@@ -104,5 +104,4 @@ public class UsuarioController {
     public boolean actualizarUsuario(int id, Usuario user) {
         return this.db.actualizarPorId(id, user);
     }
-
 }

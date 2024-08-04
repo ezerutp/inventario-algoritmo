@@ -1,4 +1,4 @@
-package appinventario.tablas;
+package appinventario.tablemodels;
 
 import appinventario.models.Consumo;
 import java.util.List;

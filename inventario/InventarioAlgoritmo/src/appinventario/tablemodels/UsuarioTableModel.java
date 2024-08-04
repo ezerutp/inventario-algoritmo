@@ -1,4 +1,4 @@
-package appinventario.tablas;
+package appinventario.tablemodels;
 
 import appinventario.models.Usuario;
 import java.util.List;

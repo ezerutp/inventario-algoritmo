@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Inventario;
 import appinventario.models.Producto;
+import appinventario.tablemodels.InventarioTableModel;
 import appinventario.utils.ProductoStock;
 
 public class InventarioController {
@@ -145,5 +146,14 @@ public class InventarioController {
             }
         }
         return stack;
+    }
+
+    /**
+     * Retorna un modelo de tabla para los inventarios.
+     * 
+     * @return Un objeto InventarioTableModel que contiene la lista de todos los inventarios.
+     */
+    public InventarioTableModel modeloInventario(){
+        return new InventarioTableModel(obtenerTodosInventarios());
     }
 }

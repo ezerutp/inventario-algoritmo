@@ -2,6 +2,7 @@ package appinventario.controllers;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Producto;
+import appinventario.tablemodels.ProductoTableModel;
 import appinventario.utils.Ordenamiento;
 
 import java.util.ArrayList;
@@ -150,4 +151,12 @@ public class ProductoController {
         return db.actualizarPorId(id, producto);
     }
     
+    /**
+     * Retorna un modelo de tabla para los productos.
+     * 
+     * @return Un objeto ProductoTableModel que contiene la lista de todos los productos.
+     */
+    public ProductoTableModel modeloProducto(){
+        return new ProductoTableModel(obtenerTodosProductos());
+    }
 }

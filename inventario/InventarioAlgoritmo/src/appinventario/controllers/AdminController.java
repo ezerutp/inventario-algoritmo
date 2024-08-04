@@ -4,6 +4,7 @@ import java.util.List;
 
 import appinventario.database.DBSqlManager;
 import appinventario.models.Usuario;
+import appinventario.tablemodels.UsuarioTableModel;
 
 public class AdminController extends UsuarioController{
 
@@ -108,5 +109,14 @@ public class AdminController extends UsuarioController{
     public boolean cambiarContraseñaAdministrador(Usuario user, String newPass) {
         user.setPassword(newPass);
         return this.db.actualizarPorId(user.getId(), user);
+    }
+
+    /**
+     * Retorna un modelo de tabla para los usuarios.
+     * 
+     * @return Un objeto UsuarioTableModel que contiene la lista de todos los usuarios.
+     */
+    public UsuarioTableModel modeloUsuarios(){
+        return new UsuarioTableModel(obtenerTodosUsuarios());
     }
 }

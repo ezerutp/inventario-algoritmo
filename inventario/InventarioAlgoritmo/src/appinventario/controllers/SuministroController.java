@@ -3,6 +3,7 @@ package appinventario.controllers;
 import appinventario.database.DBSqlManager;
 import appinventario.models.Inventario;
 import appinventario.models.Suministro;
+import appinventario.tablemodels.SuministroTableModel;
 import appinventario.utils.*;
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -96,5 +97,13 @@ public class SuministroController {
         return this.db.actualizarPorId(id, suministro);
     }
 
+    /**
+     * Retorna un modelo de tabla para los suministros.
+     * 
+     * @return Un objeto SuministroTableModel que contiene la lista de todos los suministros.
+     */
+    public SuministroTableModel modeloSuministros(){
+        return new SuministroTableModel(obtenerTodosSuministros());
+    }
     
 }
